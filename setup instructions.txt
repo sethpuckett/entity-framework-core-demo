@@ -1,0 +1,28 @@
+Creating new app
+==================
+Install latest .Net Core (https://www.microsoft.com/net/download/core#/current)
+Use Yeoman to setup new project template
+	npm install -g yo generator-aspnet bower
+	yo aspnet -> select "Web API Application"
+Open project in Visual Studio Code
+Install C# and Mono Debug extensions (and any other recommended)
+Install .Net Core Project Manager (recommended)
+Restore unresolved dependencies ('Yes' in popup or 'dotnet restore' in CLI)
+Run from debug view or 'dotnet run' in CLI to run. localhost:5000//api/values
+
+Setting up EF Core
+==================
+
+Add to project.json:
+
+"dependencies": {
+    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
+    "Microsoft.EntityFrameworkCore.Design": "1.1.0",
+    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0"
+},
+"tools": {
+"Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
+"Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4-final",
+"Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final"
+}
+
