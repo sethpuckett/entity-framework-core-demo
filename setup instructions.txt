@@ -10,7 +10,8 @@ Install .Net Core Project Manager (recommended)
 Restore unresolved dependencies ('Yes' in popup or 'dotnet restore' in CLI)
 Run from debug view or 'dotnet run' in CLI to run. localhost:5000//api/values
 
-Setting up EF Core
+
+Setting up Dependencies
 ==================
 
 Add to project.json:
@@ -26,3 +27,44 @@ Add to project.json:
 "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final"
 }
 
+
+Setting up Model & DB Context
+==============================
+
+Add "Models" folder
+
+in terminal:
+yo aspnet:class Todo
+yo aspnet:class Tag
+yo aspnet:class TodoTag
+yo aspnet:class Status
+
+
+
+
+
+Model Overview
+===============
+
+todo table
+	title, description, status, tags
+
+status table
+	code, description
+
+tag
+	title
+	
+todo-tag
+	title id, tag id
+	
+	
+API Overview
+=============
+
+Add Todo item with title & description
+Add Tag to Todo, if new create Tag
+Update Todo status
+Remove Todo
+Remove all completed Todos
+	
