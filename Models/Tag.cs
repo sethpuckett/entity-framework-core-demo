@@ -7,8 +7,8 @@ namespace entity_framework_core_demo.Models
 {
     public class Tag
     {
-        public Tag()
-        {
-        }
+        public int Id;
+
+        public string Title { get; set; }
     }
 }

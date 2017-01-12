@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using entity_framework_core_demo.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace entity_framework_core_demo
 {
@@ -29,6 +31,10 @@ namespace entity_framework_core_demo
         {
             // Add framework services.
             services.AddMvc();
+
+            var connectionString = "User ID=postgres;Password=password;Server=localhost;Port=5432;Database=todo;";
+
+            services.AddEntityFrameworkNpgsql().AddDbContext<TodoContext>(o => o.UseNpgsql(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

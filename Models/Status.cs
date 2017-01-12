@@ -7,8 +7,8 @@ namespace entity_framework_core_demo.Models
 {
     public class Status
     {
-        public Status()
-        {
-        }
+        public int Id { get; set; }
+
+        public string Title { get; set; }
     }
 }
