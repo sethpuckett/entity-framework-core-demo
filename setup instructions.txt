@@ -17,6 +17,7 @@ Setting up Dependencies
 Add to project.json:
 
 "dependencies": {
+	"Microsoft.EntityFrameworkCore": "1.1.0",
     "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
     "Microsoft.EntityFrameworkCore.Design": "1.1.0",
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0"
@@ -26,6 +27,8 @@ Add to project.json:
 "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4-final",
 "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final"
 }
+
+TODO: Test using the .Net Core Project Manager extension for packages
 
 
 Setting up Model & DB Context
@@ -38,6 +41,50 @@ yo aspnet:class Todo
 yo aspnet:class Tag
 yo aspnet:class TodoTag
 yo aspnet:class Status
+
+Add properties to models
+
+Add "DAL" folder
+
+in terminal:
+yo aspnet:class TodoContext
+
+inherit class from DbContext
+
+add 4 DbSet<>'s
+
+In Startup.cs ConfigureServices:
+	make sure using Microsoft.EntityFrameworkCore; is at the top
+	var connectionString = "User ID=postgres;Password=password;Server=localhost;Port=5432;Database=todo;";
+	services.AddEntityFrameworkNpgsql().AddDbContext<TodoContext>(o => o.UseNpgsql(connectionString));
+
+	
+EF Command Line Operations
+==========================
+
+TODO: Create & Run Migrations
+
+
+Setting Up Controller
+=====================
+
+in terminal:
+yo aspnet:class TodoController
+
+inherit class from Controller
+add Route attribute to class
+add TodoContext and instantiate
+
+add GetAllTodos()
+add AddTodo()
+add AddTag()
+add UpdateStatus()
+add DeleteTodo()
+add DeleteFinishedTodos()
+
+
+Creating UI
+===========
 
 
 
@@ -62,6 +109,7 @@ todo-tag
 API Overview
 =============
 
+Get all Todos
 Add Todo item with title & description
 Add Tag to Todo, if new create Tag
 Update Todo status
