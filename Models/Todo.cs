@@ -7,7 +7,7 @@ namespace entity_framework_core_demo.Models
 {
     public class Todo
     {
-        public int Id;
+        public int Id { get; set; }
 
         public string Title { get; set; }
 

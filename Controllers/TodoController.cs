@@ -13,9 +13,9 @@ namespace entity_framework_core_demo.Controllers
     {
         private TodoContext context { get; set; }
 
-        public TodoController()
+        public TodoController(TodoContext context)
         {
-            this.context = new TodoContext();
+            this.context = context;
         }
 
         [HttpGet]

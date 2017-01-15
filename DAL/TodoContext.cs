@@ -13,5 +13,10 @@ namespace entity_framework_core_demo.DAL
         public DbSet<Tag> Tags { get; set; }
         public DbSet<TodoTag> TodoTags { get; set; }
         public DbSet<Status> Statuses { get; set; }
+
+        public TodoContext(DbContextOptions options) : base(options)
+        {
+            
+        }
     }
 }

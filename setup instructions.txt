@@ -1,6 +1,19 @@
+Prerequisites
+=================
+Install latest .Net Core (https://www.microsoft.com/net/download/core#/current)
+Install Visual Studio Code
+Install Postgresql (or DB of choice)
+
+
+recommended
+==================
+Install PgAdmin (GUI for Postgres administration)
+Install Node/NPM (demo will use Yeoman templates)
+Install Postman (REST API Tester)
+
+
 Creating new app
 ==================
-Install latest .Net Core (https://www.microsoft.com/net/download/core#/current)
 Use Yeoman to setup new project template
 	npm install -g yo generator-aspnet bower
 	yo aspnet -> select "Web API Application"
@@ -13,6 +26,11 @@ Run from debug view or 'dotnet run' in CLI to run. localhost:5000//api/values
 
 Setting up Dependencies
 ==================
+cmd+shift+p - Nuget: Add New Package
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Tools
+Microsoft.EntityFrameworkCore.Design
+Npgsql.EntityFrameworkCore.PostgreSQL
 
 Add to project.json:
 
@@ -23,17 +41,13 @@ Add to project.json:
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0"
 },
 "tools": {
-"Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
-"Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4-final",
-"Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final"
+	"Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
+	"Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4-final",
+	"Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final"
 }
-
-TODO: Test using the .Net Core Project Manager extension for packages
-
 
 Setting up Model & DB Context
 ==============================
-
 Add "Models" folder
 
 in terminal:
@@ -53,6 +67,8 @@ inherit class from DbContext
 
 add 4 DbSet<>'s
 
+TODO: Setup mapping
+
 In Startup.cs ConfigureServices:
 	make sure using Microsoft.EntityFrameworkCore; is at the top
 	var connectionString = "User ID=postgres;Password=password;Server=localhost;Port=5432;Database=todo;";
@@ -61,13 +77,15 @@ In Startup.cs ConfigureServices:
 	
 EF Command Line Operations
 ==========================
+from project directory:
+dotnet ef migrations add CreateTables --verbose
+dotnet ef database update
 
-TODO: Create & Run Migrations
+common error: No executable found matching command "dotnet-ef": double check your dependencies
 
 
 Setting Up Controller
 =====================
-
 in terminal:
 yo aspnet:class TodoController
 
@@ -83,16 +101,13 @@ add DeleteTodo()
 add DeleteFinishedTodos()
 
 
-Creating UI
-===========
-
-
-
+Testing with Postman
+=====================
+TODO: Figure this out
 
 
 Model Overview
 ===============
-
 todo table
 	title, description, status, tags
 
@@ -108,7 +123,6 @@ todo-tag
 	
 API Overview
 =============
-
 Get all Todos
 Add Todo item with title & description
 Add Tag to Todo, if new create Tag
