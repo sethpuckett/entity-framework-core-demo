@@ -67,8 +67,6 @@ inherit class from DbContext
 
 add 4 DbSet<>'s
 
-TODO: Setup mapping
-
 In Startup.cs ConfigureServices:
 	make sure using Microsoft.EntityFrameworkCore; is at the top
 	var connectionString = "User ID=postgres;Password=password;Server=localhost;Port=5432;Database=todo;";
@@ -79,6 +77,10 @@ EF Command Line Operations
 ==========================
 from project directory:
 dotnet ef migrations add CreateTables --verbose
+dotnet ef database update
+
+dotnet ef migrations add PopulateStatusesTable
+add Insert statements to Up and Delete to Down
 dotnet ef database update
 
 common error: No executable found matching command "dotnet-ef": double check your dependencies
@@ -103,7 +105,23 @@ add DeleteFinishedTodos()
 
 Testing with Postman
 =====================
-TODO: Figure this out
+Test Get: http://localhost:5000/api/Todo
+Test Post: http://localhost:5000/api/Todo
+	Content-Type: application/json
+	{
+		"Title": "Get Groceries",
+		"Description": "Eggs, Bread, Beer, Wine"
+	}
+Test Delete: http://localhost:5000/api/Todo/8
+Test Update Status: Post to http://localhost:5000/api/Todo/4/status
+	Content-Type: application/json
+	"Finished"
+Test Add Tag: Post to http://localhost:5000/api/Todo/4/tag
+	Content-Type: application/json
+	"Urgent"
+
+
+
 
 
 Model Overview

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using entity_framework_core_demo.DAL;
 using entity_framework_core_demo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace entity_framework_core_demo.Controllers
 {
@@ -19,20 +20,28 @@ namespace entity_framework_core_demo.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Todo> GetAllTodos()
+        public IActionResult GetAllTodos()
         {
-            return this.context.Todos;
+            return Ok(this.context.Todos
+                .Include(t => t.Status)
+                // TODO: this isn't working
+                /*.Include(t => t.TodoTags).ThenInclude(t => t.Tag) */
+                );
         }
 
         [HttpPost]
-        public void AddTodo(Todo newTodo)
+        public IActionResult AddTodo([FromBody] Todo newTodo)
         {
+            newTodo.Status = this.context.Statuses.First(s => s.Title == "New");
+
             this.context.Todos.Add(newTodo);
             this.context.SaveChangesAsync();
+
+            return Ok();
         }
 
         [HttpPost, Route("{todoId}/tag")]
-        public void AddTag(int todoId, string tagTitle)
+        public IActionResult AddTag(int todoId,[FromBody] string tagTitle)
         {
             var todo = this.context.Todos.First(t => t.Id == todoId);
             var tag = this.context.Tags.FirstOrDefault(t => t.Title == tagTitle);
@@ -47,10 +56,12 @@ namespace entity_framework_core_demo.Controllers
             this.context.TodoTags.Add(todoTag);
 
             this.context.SaveChangesAsync();
+
+            return Ok();
         }
 
         [HttpPost, Route("{todoId}/status")]
-        public void UpdateStatus(int todoId, string statusTitle)
+        public IActionResult UpdateStatus(int todoId,[FromBody] string statusTitle)
         {
             var todo = this.context.Todos.First(t => t.Id == todoId);
             var status = this.context.Statuses.First(s => s.Title == statusTitle);
@@ -58,22 +69,28 @@ namespace entity_framework_core_demo.Controllers
             todo.Status = status;
 
             this.context.SaveChangesAsync();
+
+            return Ok();
         }
 
         [HttpDelete, Route("{todoId}")]
-        public void DeleteTodo(int todoId)
+        public IActionResult DeleteTodo(int todoId)
         {
             var todo = this.context.Todos.First(t => t.Id == todoId);
             this.context.Todos.Remove(todo);
             this.context.SaveChangesAsync();
+
+            return Ok();
         }
 
         [HttpDelete, Route("finished")]
-        public void DeleteFinishedTodos()
+        public IActionResult DeleteFinishedTodos()
         {
             var todos = this.context.Todos.Where(t => t.Status.Title == "Finished");
             this.context.Todos.RemoveRange(todos);
             this.context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }
