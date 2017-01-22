@@ -18,5 +18,11 @@ namespace entity_framework_core_demo.DAL
         {
             
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            /* Setup additional mapping rules here */
+            /* https://docs.microsoft.com/en-us/ef/core/modeling/relationships */
+        }
     }
 }

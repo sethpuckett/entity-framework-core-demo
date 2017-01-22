@@ -67,6 +67,9 @@ inherit class from DbContext
 
 add 4 DbSet<>'s
 
+change constructor:
+public TodoContext(DbContextOptions options) : base(options)
+
 In Startup.cs ConfigureServices:
 	make sure using Microsoft.EntityFrameworkCore; is at the top
 	var connectionString = "User ID=postgres;Password=password;Server=localhost;Port=5432;Database=todo;";
@@ -80,7 +83,12 @@ dotnet ef migrations add CreateTables --verbose
 dotnet ef database update
 
 dotnet ef migrations add PopulateStatusesTable
-add Insert statements to Up and Delete to Down
+to Up():
+  migrationBuilder.Sql("INSERT INTO \"Statuses\" (\"Title\") VALUES ('New')");
+  migrationBuilder.Sql("INSERT INTO \"Statuses\" (\"Title\") VALUES ('Finished')");
+to Down():
+  migrationBuilder.Sql("DELETE FROM \"Statuses\"");
+
 dotnet ef database update
 
 common error: No executable found matching command "dotnet-ef": double check your dependencies
@@ -93,7 +101,7 @@ yo aspnet:class TodoController
 
 inherit class from Controller
 add Route attribute to class
-add TodoContext and instantiate
+add TodoContext & inject in constructor
 
 add GetAllTodos()
 add AddTodo()
