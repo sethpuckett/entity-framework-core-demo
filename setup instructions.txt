@@ -29,7 +29,7 @@ Install Postman (REST API Tester)
 Creating new app
 ==================
 Use Yeoman to setup new project template
-	npm install -g yo generator-aspnet bower
+	npm install -g yo generator-aspnet
 	yo aspnet -> select "Web API Application"
 Open project in Visual Studio Code
 Install C# and Mono Debug extensions (and any other recommended)

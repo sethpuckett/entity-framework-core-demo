@@ -1,0 +1,19 @@
+http://localhost:5000/api/Todo
+
+Content-Type: application/json
+
+{
+    "Title": "Get Groceries",
+    "Description": "Eggs, Bread, Beer, Wine"
+}
+
+Delete: 
+http://localhost:5000/api/Todo/1
+
+Update Status: 
+Post to http://localhost:5000/api/Todo/1/status
+"Finished"
+
+Add Tag:
+Post to http://localhost:5000/api/Todo/1/tag
+"Urgent"

@@ -1,0 +1,8 @@
+yo aspnet:class TodoController
+
+GetAllTodos()
+AddTodo()
+AddTag()
+UpdateStatus()
+DeleteTodo()
+DeleteFinishedTodos()

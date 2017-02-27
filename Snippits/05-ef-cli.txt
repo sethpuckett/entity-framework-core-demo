@@ -1,0 +1,11 @@
+dotnet ef migrations add CreateTables
+
+dotnet ef database update
+
+dotnet ef migrations add PopulateStatusesTable
+
+to Up():
+  migrationBuilder.Sql("INSERT INTO \"Statuses\" (\"Title\") VALUES ('New')");
+  migrationBuilder.Sql("INSERT INTO \"Statuses\" (\"Title\") VALUES ('Finished')");
+to Down():
+  migrationBuilder.Sql("DELETE FROM \"Statuses\"");

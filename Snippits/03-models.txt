@@ -1,0 +1,16 @@
+yo aspnet:class Todo
+yo aspnet:class Tag
+yo aspnet:class TodoTag
+yo aspnet:class Status
+
+todo
+	id, title, description, status, tags
+
+status 
+	id, code, description
+
+tag
+	id, title
+	
+todo-tag
+	id, todo, tag

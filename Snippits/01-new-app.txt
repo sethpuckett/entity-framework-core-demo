@@ -1,0 +1,3 @@
+npm install -g yo generator-aspnet
+
+yo aspnet -> select "Web API Application"
