@@ -1,16 +1,30 @@
 TLDR
 =================
 1. Prerequisites (Dotnet Core, VS Code, DB, Node, Postman)
+
 2. Create app with Yeoman and open in VS Code
+
 3. Add Nuget dependencies
+
 4. Create models
+
 5. Create DB context
+
 6. Add context configuration to Startup.cs
+
 7. Create and run initial migration
+
 8. Create and run Status seed migration
+
 9. Create controller and add GetAllTodos method
+
 10. Add remaining methods to controller
+
 11. Test with Postman
+
+
+
+
 
 Prerequisites
 =================
