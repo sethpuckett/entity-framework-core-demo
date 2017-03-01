@@ -2,6 +2,6 @@ yo aspnet:class TodoContext
 
 public TodoContext(DbContextOptions options) : base(options) { }
 
-var connectionString = "User ID=postgres;Password=password;Server=localhost;Port=5432;Database=todo;";
+var connectionString = "User ID=postgres;Password=password;Server=localhost;Port=5431;Database=todo;";
 
 services.AddEntityFrameworkNpgsql().AddDbContext<TodoContext>(o => o.UseNpgsql(connectionString));
