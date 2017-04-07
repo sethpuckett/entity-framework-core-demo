@@ -23,6 +23,10 @@ namespace entity_framework_core_demo.DAL
         {
             /* Setup additional mapping rules here */
             /* https://docs.microsoft.com/en-us/ef/core/modeling/relationships */
+
+
+            // Ignore Property
+            modelBuilder.Entity<Todo>().Ignore(t => t.Processing);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,5 +17,8 @@ namespace entity_framework_core_demo.Models
         public ICollection<TodoTag> TodoTags { get; set; }
 
         public Status Status { get; set; }
+
+        [NotMapped]
+        public bool Processing {get; set;}
     }
 }
