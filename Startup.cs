@@ -35,7 +35,7 @@ namespace entity_framework_core_demo
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-            var connectionString = "User ID=postgres;Password=password;Server=localhost;Port=5432;Database=todo;";
+            var connectionString = "User ID=postgres;Password=password;Server=localhost;Port=5430;Database=todo;";
 
             services.AddEntityFrameworkNpgsql().AddDbContext<TodoContext>(o => o.UseNpgsql(connectionString));
         }
