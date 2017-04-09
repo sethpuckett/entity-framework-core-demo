@@ -22,7 +22,9 @@ TLDR
 
 11. Test with Postman
 
-12. Model Customization
+12. Shadow properties
+
+13. Model Customization
 
 
 
@@ -169,10 +171,35 @@ Exclude class or property from data model
 Data Annotation - [NotMapped]
 Fluent API - ModelBuilder.Ignore()
 
+Set primary key
+Data Annotation - [Key]
+Fluent API - ModelBuilder.Entity<Type>().HasKey()
 
+Generated values
+Data Annotation - [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+Fluent API - ModelBuilder.Entity<Type>().Property().ValueGeneratedOnAddOrUpdate();
 
+Required values
+Data Annotation - [Required]
+Fluent API - modelBuilder.Entity<Type>().Property().IsRequired();
 
+Max length
+Data Annotation - [MaxLength(100)]
+Fluent API - modelBuilder.Entity<Type>().Property().HasMaxLength(100);
 
+Concurrency Token
+Data Annotation - [ConcurrencyCheck]
+Fluent API - modelBuilder.Entity<Type>().Property().IsConcurrencyToken();
+
+Foreign Key
+Data Annotation - [ForeignKey("KeyName")]
+Fluent API - modelBuilder.Entity<Type>().HasOne().WithMany().HasForeignKey();
+
+Indexes
+Fluent API - modelBuilder.Entity<Type>().HasIndex();
+
+Alternate Key
+Fluent API - modelBuilder.Entity<Type>().HasAlternateKey();
 
 Model Overview
 ===============

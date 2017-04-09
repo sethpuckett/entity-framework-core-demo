@@ -12,6 +12,8 @@ namespace entity_framework_core_demo.Models
         public int Id { get; set; }
 
         /* [Key] */
+        // [Required]
+        // [MaxLength(100)]
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -21,6 +23,7 @@ namespace entity_framework_core_demo.Models
         public Status Status { get; set; }
 
         /* [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [ConcurrencyCheck]
         public DateTime UpdatedDate { get; set; } */
 
         public ValidationTracker Validation { get; set; }

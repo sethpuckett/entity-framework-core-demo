@@ -24,6 +24,8 @@ namespace entity_framework_core_demo.DAL
             /* Setup additional mapping rules here */
             /* https://docs.microsoft.com/en-us/ef/core/modeling/relationships */
 
+            modelBuilder.Entity<Todo>().Property<DateTime>("CreatedDate");
+
             // Ignore Class
             modelBuilder.Ignore<ValidationTracker>();
             // Ignore Property
@@ -39,7 +41,40 @@ namespace entity_framework_core_demo.DAL
             // Generated Value
             /* modelBuilder.Entity<Todo>()
                 .Property(t => t.UpdatedDate)
+                .IsConcurrencyToken()
                 .ValueGeneratedOnAddOrUpdate(); */
+
+            // Required & Optional Values
+            /* modelBuilder.Entity<Todo>()
+                .Property(t => t.Title)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            modelBuilder.Entity<Status>()
+                .Property(s => s.Title)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            modelBuilder.Entity<Tag>()
+                .Property(t => t.Title)
+                .HasMaxLength(100)
+                .IsRequired(); */
+
+            // Relationships & Foreign Keys
+            /* modelBuilder.Entity<Todo>()
+                .HasMany(t => t.TodoTags)
+                .WithOne(t => t.Todo)
+                .HasForeignKey("TodoId"); */
+
+            // Index
+            /* modelBuilder.Entity<Todo>().HasIndex(t => t.Title).HasName("IndexName");
+            modelBuilder.Entity<Todo>().HasIndex(t => t.Title).IsUnique();
+            modelBuilder.Entity<Todo>().HasIndex(t => new { t.Title, t.Description }); */
+
+            // Alternate Key
+            /* modelBuilder.Entity<Todo>().HasAlternateKey(t => t.Title); */
+            
+
         }
     }
 }

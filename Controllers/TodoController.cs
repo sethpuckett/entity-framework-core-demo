@@ -32,6 +32,10 @@ namespace entity_framework_core_demo.Controllers
         public async Task<IActionResult> AddTodo([FromBody] Todo newTodo)
         {
             newTodo.Status = this.context.Statuses.First(s => s.Title == "New");
+            // this.context.Entry(newTodo).Property("CreatedDate").CurrentValue = DateTime.Now;
+            
+            // to access shadow property:
+            // var createdDate = EF.Property<DateTime>(newTodo, "CreatedDate");
 
             this.context.Todos.Add(newTodo);
             await this.context.SaveChangesAsync();
