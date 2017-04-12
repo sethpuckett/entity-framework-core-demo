@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using entity_framework_core_demo.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace entity_framework_core_demo.DAL
 {
@@ -24,7 +25,7 @@ namespace entity_framework_core_demo.DAL
             /* Setup additional mapping rules here */
             /* https://docs.microsoft.com/en-us/ef/core/modeling/relationships */
 
-            modelBuilder.Entity<Todo>().Property<DateTime>("CreatedDate");
+            //modelBuilder.Entity<Todo>().Property<DateTime>("CreatedDate");
 
             // Ignore Class
             modelBuilder.Ignore<ValidationTracker>();
@@ -45,6 +46,17 @@ namespace entity_framework_core_demo.DAL
                 .ValueGeneratedOnAddOrUpdate(); */
 
             // Required & Optional Values
+            modelBuilder.Entity<TodoTag>()
+                .HasOne<Todo>(t => t.Todo)
+                .WithMany(t => t.TodoTags)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<TodoTag>()
+                .HasOne<Tag>(t => t.Tag)
+                .WithMany()
+                .IsRequired();
+
             /* modelBuilder.Entity<Todo>()
                 .Property(t => t.Title)
                 .HasMaxLength(100)

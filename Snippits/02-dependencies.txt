@@ -1,11 +1,14 @@
-"dependencies": {
-	"Microsoft.EntityFrameworkCore": "1.1.0",
-    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
-    "Microsoft.EntityFrameworkCore.Design": "1.1.0",
-    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0"
-},
-"tools": {
-	"Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
-	"Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4-final",
-	"Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final"
-}
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />    
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="1.1.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
+  </ItemGroup>
